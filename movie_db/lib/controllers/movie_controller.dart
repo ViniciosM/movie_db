@@ -1,22 +1,18 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:movie_db/repositories/movies_repository.dart';
 
 import '../models/movies_model.dart';
 
 class MovieController {
+  final MoviesRepository _moviesRepository;
 
- final MoviesRepository _moviesRepository;
+  MovieController(this._moviesRepository) {
+    fetch();
+  }
 
- MovieController(this._moviesRepository){
-  fetch();
- }
+  ValueNotifier<Movies?> movies = ValueNotifier<Movies?>(null);
 
- late ValueNotifier<Movies> movies;
-
- fetch() async {
-  movies.value = await _moviesRepository.getMovies();
- }
-
+  fetch() async {
+    movies.value = await _moviesRepository.getMovies();
+  }
 }

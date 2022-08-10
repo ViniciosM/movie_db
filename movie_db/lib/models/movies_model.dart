@@ -1,36 +1,38 @@
-class MoviesModel {
-  MoviesModel({
+class Movies {
+  Movies({
     required this.id,
     required this.page,
-    required this.results,
+    required this.listMovies,
     required this.totalPages,
-    required this.totalResults,
+    required this.totalMovies,
   });
   late final int id;
   late final int page;
-  late final List<Movies> results;
+  late final List<Movies> listMovies;
   late final int totalPages;
-  late final int totalResults;
+  late final int totalMovies;
 
-  MoviesModel.fromJson(Map<String, dynamic> json) {
+  Movies.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     page = json['page'];
-    results =
+    listMovies =
         List.from(json['results']).map((e) => Movies.fromJson(e)).toList();
     totalPages = json['total_pages'];
-    totalResults = json['total_results'];
+    totalMovies = json['total_results'];
   }
 
   Map<String, dynamic> toJson() {
     final _data = <String, dynamic>{};
     _data['id'] = id;
     _data['page'] = page;
-    _data['results'] = results.map((e) => e.toJson()).toList();
+    _data['results'] = listMovies.map((e) => e.toJson()).toList();
     _data['total_pages'] = totalPages;
-    _data['total_results'] = totalResults;
+    _data['total_results'] = totalMovies;
     return _data;
   }
 }
+
+/*
 
 class Movies {
   Movies({
@@ -76,3 +78,5 @@ class Movies {
     return _data;
   }
 }
+
+*/
